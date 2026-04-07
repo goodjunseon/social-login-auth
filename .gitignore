@@ -1,0 +1,7 @@
+.idea
+AGENT.md
+PLANS.md
+# local secrets
+.env
+.env.*
+!.env.example
