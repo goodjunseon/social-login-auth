@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: auth
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:}
+    username: ${SPRING_DATASOURCE_USERNAME:}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+
+auth:
+  jwt:
+    secret: ${AUTH_JWT_SECRET:}
+    access-token-expiration-seconds: ${AUTH_JWT_ACCESS_TOKEN_EXPIRATION_SECONDS:3600}
+    refresh-token-expiration-seconds: ${AUTH_JWT_REFRESH_TOKEN_EXPIRATION_SECONDS:1209600}
+  apple:
+    client-id: ${AUTH_APPLE_CLIENT_ID:}
+    team-id: ${AUTH_APPLE_TEAM_ID:}
+    key-id: ${AUTH_APPLE_KEY_ID:}
+    private-key: ${AUTH_APPLE_PRIVATE_KEY:}
+    redirect-uri: ${AUTH_APPLE_REDIRECT_URI:}
+    issuer: ${AUTH_APPLE_ISSUER:}
+    audience: ${AUTH_APPLE_AUDIENCE:}
+  kakao:
+    client-id: ${AUTH_KAKAO_CLIENT_ID:}
+    client-secret: ${AUTH_KAKAO_CLIENT_SECRET:}
+    redirect-uri: ${AUTH_KAKAO_REDIRECT_URI:}
