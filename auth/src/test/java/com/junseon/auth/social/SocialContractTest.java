@@ -17,7 +17,7 @@ class SocialContractTest {
     }
 
     @Test
-    void socialLoginCommandShouldRejectNullOrBlankFields() {
+    void socialLoginCommandShouldRejectNullProviderOrBlankToken() {
         assertThatThrownBy(() -> new SocialLoginCommand(null, "token", "nonce"))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("provider must not be null");
@@ -25,10 +25,15 @@ class SocialContractTest {
         assertThatThrownBy(() -> new SocialLoginCommand(SocialProvider.APPLE, " ", "nonce"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("token must not be blank");
+    }
 
-        assertThatThrownBy(() -> new SocialLoginCommand(SocialProvider.APPLE, "token", ""))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("nonce must not be blank");
+    @Test
+    void socialLoginCommandShouldAllowNullableNonce() {
+        SocialLoginCommand command = new SocialLoginCommand(SocialProvider.APPLE, "token", null);
+
+        assertThat(command.provider()).isEqualTo(SocialProvider.APPLE);
+        assertThat(command.token()).isEqualTo("token");
+        assertThat(command.nonce()).isNull();
     }
 
     @Test

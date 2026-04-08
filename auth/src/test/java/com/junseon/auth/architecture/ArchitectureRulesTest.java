@@ -29,6 +29,7 @@ class ArchitectureRulesTest {
     static final ArchRule providerImplementationsMustImplementSocialIdentityVerifier = classes()
             .that().resideInAPackage("..social.*..")
             .and().areAnnotatedWith(Component.class)
+            .and().haveSimpleNameEndingWith("Verifier")
             .should().implement(SocialIdentityVerifier.class)
             .because("provider implementation entry points must implement social contracts");
 

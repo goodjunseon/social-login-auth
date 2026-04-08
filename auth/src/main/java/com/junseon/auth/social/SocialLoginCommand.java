@@ -10,7 +10,6 @@ public record SocialLoginCommand(
     public SocialLoginCommand {
         Objects.requireNonNull(provider, "provider must not be null");
         validateNotBlank(token, "token");
-        validateNotBlank(nonce, "nonce");
     }
 
     private static void validateNotBlank(String value, String fieldName) {
