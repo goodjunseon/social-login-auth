@@ -14,27 +14,27 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 class ArchitectureRulesTest {
 
     @ArchTest
-    static final ArchRule socialContractsMustNotDependOnAppleImplementation = noClasses()
+    static final ArchRule socialContractsMustNotDependOnProviderImplementations = noClasses()
             .that().resideInAPackage("com.junseon.auth.social")
-            .should().dependOnClassesThat().resideInAnyPackage("..social.apple..")
+            .should().dependOnClassesThat().resideInAnyPackage("..social.*..")
             .because("social root contracts must stay provider-agnostic");
 
     @ArchTest
-    static final ArchRule authApplicationMustNotDependOnProviderImplementation = noClasses()
+    static final ArchRule authApplicationMustNotDependOnProviderImplementations = noClasses()
             .that().resideInAPackage("..auth.application..")
-            .should().dependOnClassesThat().resideInAnyPackage("..social.apple..")
-            .because("auth application must depend on social contracts, not provider implementation");
+            .should().dependOnClassesThat().resideInAnyPackage("..social.*..")
+            .because("auth application must depend on social contracts, not concrete provider implementations");
 
     @ArchTest
     static final ArchRule providerImplementationsMustImplementSocialIdentityVerifier = classes()
-            .that().resideInAPackage("..social.apple..")
+            .that().resideInAPackage("..social.*..")
             .and().areAnnotatedWith(Component.class)
             .should().implement(SocialIdentityVerifier.class)
             .because("provider implementation entry points must implement social contracts");
 
     @ArchTest
     static final ArchRule providerImplementationsMustNotDependOnAuthOrUserImplementations = noClasses()
-            .that().resideInAPackage("..social.apple..")
+            .that().resideInAPackage("..social.*..")
             .should().dependOnClassesThat().resideInAnyPackage("..auth.presentation..", "..auth.application.impl..", "..user.infrastructure..")
             .because("provider implementation must stay isolated from auth/user concrete internals");
 }
