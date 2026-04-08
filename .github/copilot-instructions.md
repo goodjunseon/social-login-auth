@@ -1,5 +1,11 @@
 # GitHub Copilot Review Instructions
 
+## 0) Review Language (필수)
+
+- All pull request review comments must be written in Korean.
+- 모든 Pull Request 리뷰 코멘트는 반드시 한국어로 작성한다.
+- 요약/파일별 설명/인라인 코멘트/제안 코드 설명을 포함한 전체 리뷰 출력은 한국어를 기본으로 한다.
+
 ## 1) 문서 목적
 
 이 문서는 `social-login-auth` 프로젝트에서 GitHub Copilot Review가 Pull Request를 검토할 때 따라야 할 기준이다.
